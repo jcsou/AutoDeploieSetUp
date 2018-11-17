@@ -1,0 +1,6 @@
+- hosts: webservers
+  roles: 
+  - role: prerequis
+    tags: prerequis
+  - role: artifactory
+    tags: artifactory 

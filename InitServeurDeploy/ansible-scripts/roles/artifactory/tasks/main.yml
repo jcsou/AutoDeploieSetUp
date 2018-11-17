@@ -1,0 +1,25 @@
+- name: Download Artifactory
+  get_url: 
+    url: https://bintray.com/jfrog/artifactory-rpms/download_file?file_path={{ artifactory_rpmname }}
+    dest: '{{ download_repo }}/{{ artifactory_rpmname }}'
+    owner: root 
+    group: root 
+    mode: 744
+    
+- name: install artifactory rpm from a local file
+  yum:
+    name: /home/downloadfolder/{{ artifactory_rpmname }}
+    state: present
+
+- name: start artifactory service
+  service:
+    name: artifactory
+    state: started
+
+- name: Wait for artifactory to start
+  wait_for:
+    host: localhost
+    port: 8081
+    delay: 10
+    sleep: 5 
+    timeout: 300

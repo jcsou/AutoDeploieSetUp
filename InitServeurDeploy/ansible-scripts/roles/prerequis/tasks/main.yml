@@ -1,0 +1,5 @@
+- name: Create downloadfolder folder
+   file:
+     path: {{ download_repo }}
+     mode: 0744
+     state: directory
