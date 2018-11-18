@@ -8,5 +8,7 @@ yum install ansible
 ssh-keygen -t rsa -b 2048
 cat .ssh/id_rsa.pub > .ssh/authorized_keys
  
-## INSTALL 
-yum install java-1.8.0-openjdk-devel
+## openfirewall 
+sudo firewall-cmd --zone=public --add-port=8081/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=8088/tcp --permanent
+sudo firewall-cmd --reload
