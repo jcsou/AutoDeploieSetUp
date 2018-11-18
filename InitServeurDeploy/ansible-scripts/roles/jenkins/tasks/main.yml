@@ -1,0 +1,29 @@
+- name: Download jenkins
+  get_url: 
+    url: https://pkg.jenkins.io/redhat-stable/{{ jenkins_rpmname }}
+    dest: '{{ download_repo }}/{{ jenkins_rpmname }}'
+    mode: 744
+
+- name: install jenkins rpm from a local file
+  yum:
+    name: '{{ download_repo }}/{{ jenkins_rpmname }}'
+    state: present
+
+- name:  change port for jenkins (8088)
+  replace: 
+    dest: /etc/sysconfig/jenkins
+    regexp: 'JENKINS_PORT="(.*)"'
+    replace: 'JENKINS_PORT="8088"'
+    backup: yes
+
+- name:  change java option ipv4 port for jenkins
+  replace:
+    dest: /etc/sysconfig/jenkins
+    regexp: 'JENKINS_JAVA_OPTIONS="(.*)"'
+    replace: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true"'
+    backup: yes
+
+- name: start jenkins service
+  service:
+    name: jenkins
+    state: started

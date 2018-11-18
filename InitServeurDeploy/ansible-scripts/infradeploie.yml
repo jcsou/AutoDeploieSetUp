@@ -5,4 +5,6 @@
   - role: openjdk
     tags: openjdk 
   - role: artifactory
-    tags: artifactory 
+    tags: artifactory
+  - role: jenkins
+    tags: jenkins
