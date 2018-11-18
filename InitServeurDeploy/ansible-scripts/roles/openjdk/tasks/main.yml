@@ -1,0 +1,4 @@
+- name: install artifactory rpm from a local file
+  yum:
+    name: java-1.8.0-openjdk-devel
+    state: present

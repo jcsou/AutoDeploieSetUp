@@ -2,5 +2,7 @@
   roles: 
   - role: prerequis
     tags: prerequis
+  - role: openjdk
+    tags: openjdk 
   - role: artifactory
     tags: artifactory 
